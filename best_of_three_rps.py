@@ -2,7 +2,8 @@ import random
 
 player_wins = 0
 computer_wins = 0
-rps = ['rock', 'paper', 'scissors']
+
+RPS = ('rock', 'paper', 'scissors')
 
 choices = {
     'r': 'rock',
@@ -10,23 +11,24 @@ choices = {
     's': 'scissors'
 }
 
-for i in range(3):
+round_number = 1
+
+while round_number <= 3 or player_wins == computer_wins:
 
     while True:
         player_choice = input(
             "rock, paper or scissors? "
         ).lower().strip()
 
-        # Convert first letters to full words
         if player_choice in choices:
             player_choice = choices[player_choice]
 
-        if player_choice in rps:
+        if player_choice in RPS:
             break
 
         print("Please choose rock, paper, scissors, or r/p/s.")
 
-    pc_choice = random.choice(rps)
+    pc_choice = random.choice(RPS)
 
     if player_choice == pc_choice:
         print("It's a tie!")
@@ -45,11 +47,13 @@ for i in range(3):
 
     print(f"Computer chose: {pc_choice}")
     print(f"Your total wins: {player_wins}")
+    print(f"Computer total wins: {computer_wins}")
     print()
+
+    round_number += 1
+
 
 if player_wins > computer_wins:
     print("The player is the winner!")
-elif computer_wins > player_wins:
-    print("The computer wins!")
 else:
-    print("it's a tie!")
+    print("The computer wins!")
